@@ -170,7 +170,7 @@ Stay updated with:
 **Vision AI Studio** - Your unified gateway to AI-powered creativity.
 \`\`\`
 
-```htaccess file=".htaccess"
+\`\`\`htaccess file=".htaccess"
 # Security Headers
 Header always set X-Content-Type-Options nosniff
 Header always set X-Frame-Options DENY
