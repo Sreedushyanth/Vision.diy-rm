@@ -1,0 +1,125 @@
+default_models:
+  # Chat Models
+  - id: google/gemma-3-27b-it
+    priority: highest
+    type: general
+    provider: openrouter
+    description: "Fast and efficient general-purpose model"
+    
+  - id: mistralai/devstral-small-2505
+    priority: high
+    type: code
+    provider: openrouter
+    description: "Specialized for coding and development tasks"
+    
+  - id: openai/gpt-4o
+    priority: medium
+    type: creative
+    provider: openrouter
+    description: "Advanced model for creative and complex tasks"
+    
+  - id: meta-llama/llama-3.3-70b-instruct
+    priority: high
+    type: story
+    provider: openrouter
+    description: "Excellent for storytelling and narrative generation"
+
+  # Image Models
+  - id: provider-4/imagen-3
+    priority: high
+    type: image
+    provider: a4f
+    description: "High-quality image generation"
+    
+  - id: provider-4/imagen-4
+    priority: highest
+    type: image
+    provider: a4f
+    description: "Latest image generation model"
+    
+  - id: provider-6/sana-1.5-flash
+    priority: high
+    type: image
+    provider: a4f
+    description: "Fast image generation"
+    
+  - id: provider-3/imagen-3.0-generate-002
+    priority: medium
+    type: image
+    provider: a4f
+    description: "Stable image generation"
+    
+  - id: provider-1/FLUX.1-kontext-pro
+    priority: high
+    type: image
+    provider: a4f
+    description: "Professional image generation"
+    
+  - id: provider-1/FLUX.1.1-pro
+    priority: highest
+    type: image
+    provider: a4f
+    description: "Latest FLUX model"
+    
+  - id: provider-6/sana-1.5
+    priority: medium
+    type: image
+    provider: a4f
+    description: "Balanced image generation"
+    
+  - id: provider-3/imagen-4.0-generate-preview-06-06
+    priority: experimental
+    type: image
+    provider: a4f
+    description: "Preview of next-generation image model"
+
+  # Video Models
+  - id: provider-4/pika-latest
+    priority: high
+    type: video
+    provider: a4f
+    description: "Latest video generation model"
+    
+  - id: provider-2/runway-gen3
+    priority: high
+    type: video
+    provider: a4f
+    description: "Advanced video generation"
+
+  # Music Models
+  - id: provider-5/suno-v4
+    priority: high
+    type: music
+    provider: a4f
+    description: "High-quality music generation"
+    
+  - id: provider-5/udio-v1.5
+    priority: medium
+    type: music
+    provider: a4f
+    description: "Versatile music generation"
+
+routing_rules:
+  - intent: "image"
+    default_model: "provider-4/imagen-4"
+    fallback: "provider-6/sana-1.5-flash"
+    
+  - intent: "video"
+    default_model: "provider-4/pika-latest"
+    fallback: "provider-2/runway-gen3"
+    
+  - intent: "code"
+    default_model: "mistralai/devstral-small-2505"
+    fallback: "google/gemma-3-27b-it"
+    
+  - intent: "story"
+    default_model: "meta-llama/llama-3.3-70b-instruct"
+    fallback: "openai/gpt-4o"
+    
+  - intent: "music"
+    default_model: "provider-5/suno-v4"
+    fallback: "provider-5/udio-v1.5"
+    
+  - intent: "default"
+    default_model: "google/gemma-3-27b-it"
+    fallback: "openai/gpt-4o"

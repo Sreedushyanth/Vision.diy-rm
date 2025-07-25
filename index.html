@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionAI Pro Studio - Multimedia AI Platform</title>
+    <meta name="description" content="Complete AI studio for text, image, video, and music generation with UPI payments">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    
+    <!-- Google AdMob -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3565144458346793" crossorigin="anonymous"></script>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- App Open Ad -->
+    <div id="appOpenAd" class="app-open-ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3565144458346793"
+             data-ad-slot="6946485987"
+             data-ad-format="app-open"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <span class="material-icons">auto_awesome</span>
+                    </div>
+                    <h1>VisionAI <span class="pro-badge">PRO</span></h1>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="plan-btn" id="planBtn">
+                        <span class="material-icons">card_membership</span>
+                        <span class="plan-text">Upgrade</span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="material-icons">dark_mode</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-mode="chat">
+                <span class="material-icons">chat</span>
+                <span>Chat</span>
+            </button>
+            <button class="nav-tab" data-mode="image">
+                <span class="material-icons">image</span>
+                <span>Image</span>
+            </button>
+            <button class="nav-tab" data-mode="video">
+                <span class="material-icons">videocam</span>
+                <span>Video</span>
+            </button>
+            <button class="nav-tab" data-mode="audio">
+                <span class="material-icons">audiotrack</span>
+                <span>Audio</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Chat Mode -->
+            <section class="mode-panel active" id="chatPanel">
+                <div class="panel-header">
+                    <h2>AI Chat Assistant</h2>
+                    <div class="model-selector">
+                        <select id="chatModelSelect" class="model-select">
+                            <option value="openrouter/cypher-alpha">Cypher Alpha</option>
+                            <option value="mistralai/mistral-small-3.2-24B">Mistral Small 3.2</option>
+                            <option value="google/gemma-3-27b-it">Gemma 3 27B</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="messages-area" id="chatMessages">
+                        <div class="welcome-message">
+                            <div class="welcome-icon">
+                                <span class="material-icons">smart_toy</span>
+                            </div>
+                            <h3>Welcome to VisionAI Pro</h3>
+                            <p>Your intelligent AI assistant is ready to help!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <form class="chat-form" id="chatForm">
+                        <div class="input-container">
+                            <textarea id="chatInput" placeholder="Ask me anything..." rows="3"></textarea>
+                            <button type="submit" class="send-btn">
+                                <span class="material-icons">send</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Image Mode -->
+            <section class="mode-panel" id="imagePanel">
+                <div class="panel-header">
+                    <h2>AI Image Generator</h2>
+                    <div class="model-selector">
+                        <select id="imageModelSelect" class="model-select">
+                            <option value="provider-2/FLUX.1-schnell">FLUX.1 Schnell</option>
+                            <option value="provider-6/FLUX.1-pro">FLUX.1 Pro</option>
+                            <option value="provider-6/FLUX.1-kontext-pro">FLUX.1 Kontext Pro</option>
+                            <option value="provider-6/black-forest-labs-flux-1-kontext-max">FLUX.1 Kontext Max</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="generation-container">
+                    <div class="image-gallery" id="imageGallery">
+                        <div class="gallery-placeholder">
+                            <span class="material-icons">photo_library</span>
+                            <p>Generated images will appear here</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <form class="generation-form" id="imageForm">
+                        <div class="input-container">
+                            <textarea id="imageInput" placeholder="Describe the image you want to generate..." rows="3"></textarea>
+                            <div class="generation-options">
+                                <select id="imageSize" class="size-select">
+                                    <option value="1024x1024">Square (1024x1024)</option>
+                                    <option value="1024x1792">Portrait (1024x1792)</option>
+                                    <option value="1792x1024">Landscape (1792x1024)</option>
+                                </select>
+                                <button type="submit" class="generate-btn">
+                                    <span class="material-icons">create</span>
+                                    <span>Generate</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Video Mode -->
+            <section class="mode-panel" id="videoPanel">
+                <div class="panel-header">
+                    <h2>AI Video Generator</h2>
+                    <div class="model-selector">
+                        <select id="videoModelSelect" class="model-select">
+                            <option value="provider-6/wan-2.1">WAN 2.1</option>
+                            <option value="provider-3/svd-xt">SVD-XT</option>
+                            <option value="provider-4/pika-latest">Pika Latest</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="generation-container">
+                    <div class="video-player" id="videoPlayer">
+                        <div class="player-placeholder">
+                            <span class="material-icons">movie</span>
+                            <p>Generated videos will appear here</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <form class="generation-form" id="videoForm">
+                        <div class="input-container">
+                            <textarea id="videoInput" placeholder="Describe the video you want to create..." rows="3"></textarea>
+                            <div class="generation-options">
+                                <select id="videoDuration" class="duration-select">
+                                    <option value="5">5 seconds</option>
+                                    <option value="10">10 seconds</option>
+                                    <option value="15">15 seconds</option>
+                                    <option value="30">30 seconds</option>
+                                </select>
+                                <select id="videoStyle" class="style-select">
+                                    <option value="cinematic">Cinematic</option>
+                                    <option value="photorealistic">Photorealistic</option>
+                                    <option value="anime">Anime</option>
+                                    <option value="artistic">Artistic</option>
+                                </select>
+                                <button type="submit" class="generate-btn">
+                                    <span class="material-icons">videocam</span>
+                                    <span>Generate</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Audio Mode -->
+            <section class="mode-panel" id="audioPanel">
+                <div class="panel-header">
+                    <h2>AI Audio Studio</h2>
+                    <div class="audio-tabs">
+                        <button class="audio-tab active" data-audio-mode="tts">Text to Speech</button>
+                        <button class="audio-tab" data-audio-mode="transcribe">Transcription</button>
+                        <button class="audio-tab" data-audio-mode="music">Music</button>
+                    </div>
+                </div>
+                
+                <!-- TTS Panel -->
+                <div class="audio-panel active" id="ttsPanel">
+                    <div class="model-selector">
+                        <select id="ttsModelSelect" class="model-select">
+                            <option value="provider-6/sonic-2">Sonic 2</option>
+                            <option value="provider-6/sonic">Sonic</option>
+                        </select>
+                    </div>
+                    
+                    <div class="audio-player" id="audioPlayer">
+                        <div class="player-placeholder">
+                            <span class="material-icons">record_voice_over</span>
+                            <p>Generated audio will appear here</p>
+                        </div>
+                    </div>
+                    
+                    <form class="generation-form" id="ttsForm">
+                        <div class="input-container">
+                            <textarea id="ttsInput" placeholder="Enter text to convert to speech..." rows="4"></textarea>
+                            <div class="generation-options">
+                                <select id="voiceSelect" class="voice-select">
+                                    <option value="female">Female Voice</option>
+                                    <option value="male">Male Voice</option>
+                                    <option value="child">Child Voice</option>
+                                </select>
+                                <button type="submit" class="generate-btn">
+                                    <span class="material-icons">record_voice_over</span>
+                                    <span>Generate</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Transcription Panel -->
+                <div class="audio-panel" id="transcribePanel">
+                    <div class="model-selector">
+                        <select id="transcribeModelSelect" class="model-select">
+                            <option value="provider-2/whisper-1">Whisper 1</option>
+                            <option value="provider-6/distil-whisper-large-v3-en">Distil Whisper Large</option>
+                        </select>
+                    </div>
+                    
+                    <div class="upload-area" id="audioUpload">
+                        <span class="material-icons">cloud_upload</span>
+                        <p>Drop audio file here or click to upload</p>
+                        <input type="file" id="audioFile" accept="audio/*" hidden>
+                    </div>
+                    
+                    <div class="transcription-result" id="transcriptionResult">
+                        <div class="result-placeholder">
+                            <span class="material-icons">transcript</span>
+                            <p>Transcription will appear here</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Music Panel -->
+                <div class="audio-panel" id="musicPanel">
+                    <div class="music-generators">
+                        <button class="music-gen-btn" id="genreBtn">
+                            <span class="material-icons">library_music</span>
+                            <span>Random Genre</span>
+                        </button>
+                        <button class="music-gen-btn" id="storyBtn">
+                            <span class="material-icons">auto_stories</span>
+                            <span>Random Story</span>
+                        </button>
+                    </div>
+                    
+                    <div class="music-result" id="musicResult">
+                        <div class="result-placeholder">
+                            <span class="material-icons">queue_music</span>
+                            <p>Click buttons above to generate music ideas</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Plans Modal -->
+        <div class="modal-overlay" id="plansModal">
+            <div class="modal-content plans-modal">
+                <div class="modal-header">
+                    <h2>Choose Your Plan</h2>
+                    <button class="close-btn" id="closePlansModal">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                
+                <div class="plans-grid">
+                    <div class="plan-card free">
+                        <div class="plan-header">
+                            <h3>Free</h3>
+                            <div class="price">₹0<span>/month</span></div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature"><span class="material-icons">check</span>10 Images/day</div>
+                            <div class="feature"><span class="material-icons">check</span>3 Videos/day</div>
+                            <div class="feature"><span class="material-icons">check</span>Basic access</div>
+                            <div class="feature limited"><span class="material-icons">close</span>Watermark enabled</div>
+                        </div>
+                        <button class="plan-btn current">Current Plan</button>
+                    </div>
+                    
+                    <div class="plan-card basic">
+                        <div class="plan-header">
+                            <h3>Basic</h3>
+                            <div class="price">₹21<span>/month</span></div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature"><span class="material-icons">check</span>15 Images/day</div>
+                            <div class="feature"><span class="material-icons">check</span>6 Videos/day</div>
+                            <div class="feature"><span class="material-icons">check</span>Genre music match</div>
+                            <div class="feature"><span class="material-icons">check</span>Story pairing</div>
+                        </div>
+                        <button class="plan-btn upgrade" data-plan="basic" data-price="21">Upgrade Now</button>
+                    </div>
+                    
+                    <div class="plan-card pro popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3>Pro</h3>
+                            <div class="price">₹50<span>/month</span></div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature"><span class="material-icons">check</span>21 Images/day</div>
+                            <div class="feature"><span class="material-icons">check</span>10 Videos/day</div>
+                            <div class="feature"><span class="material-icons">check</span>All models unlocked</div>
+                            <div class="feature"><span class="material-icons">check</span>TTS included</div>
+                        </div>
+                        <button class="plan-btn upgrade" data-plan="pro" data-price="50">Upgrade Now</button>
+                    </div>
+                    
+                    <div class="plan-card subscription">
+                        <div class="plan-header">
+                            <h3>Subscription</h3>
+                            <div class="price">₹100<span>/month</span></div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature"><span class="material-icons">check</span>50 Images/day</div>
+                            <div class="feature"><span class="material-icons">check</span>15 Videos/day</div>
+                            <div class="feature"><span class="material-icons">check</span>Remove watermark</div>
+                            <div class="feature"><span class="material-icons">check</span>Fast priority</div>
+                        </div>
+                        <button class="plan-btn upgrade" data-plan="subscription" data-price="100">Upgrade Now</button>
+                    </div>
+                    
+                    <div class="plan-card ultimate">
+                        <div class="plan-header">
+                            <h3>Ultimate</h3>
+                            <div class="price">₹500<span>/month</span></div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature"><span class="material-icons">check</span>Unlimited Images</div>
+                            <div class="feature"><span class="material-icons">check</span>Unlimited Videos</div>
+                            <div class="feature"><span class="material-icons">check</span>Full model access</div>
+                            <div class="feature"><span class="material-icons">check</span>DSLR quality</div>
+                        </div>
+                        <button class="plan-btn upgrade" data-plan="ultimate" data-price="500">Upgrade Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div class="modal-overlay" id="paymentModal">
+            <div class="modal-content payment-modal">
+                <div class="modal-header">
+                    <h2>Complete Payment</h2>
+                    <button class="close-btn" id="closePaymentModal">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                
+                <div class="payment-content">
+                    <div class="plan-summary" id="planSummary">
+                        <!-- Plan details will be inserted here -->
+                    </div>
+                    
+                    <form class="payment-form" id="paymentForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="customerName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="customerEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="customerPhone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <div class="payment-methods">
+                                <label class="payment-method">
+                                    <input type="radio" name="paymentMethod" value="gpay" checked>
+                                    <div class="method-info">
+                                        <span class="method-name">Google Pay</span>
+                                        <span class="method-id">sreedushyanth59@okhdfcbank</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="paymentMethod" value="phonepe">
+                                    <div class="method-info">
+                                        <span class="method-name">PhonePe</span>
+                                        <span class="method-id">9347307112@axl</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="pay-btn">
+                            <span class="material-icons">payment</span>
+                            <span>Pay Now</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p id="loadingText">Processing your request...</p>
+            </div>
+        </div>
+
+        <!-- AdMob Banner Bottom -->
+        <div class="ad-banner-bottom">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3565144458346793"
+                 data-ad-slot="7625142836"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/payments.js"></script>
+    
+    <!-- Initialize AdMob -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
